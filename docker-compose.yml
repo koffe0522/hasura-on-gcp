@@ -26,5 +26,22 @@ services:
       - postgres
     restart: always
 
+  # ACTIONS
+  actions:
+    container_name: actions
+    build:
+      context: ./actions
+      dockerfile: ./Dockerfile
+    ports:
+      - 9000:9000
+    tty: true
+    working_dir: /usr/src/app
+    volumes:
+      - ./actions:/usr/src/app
+    environment:
+      ENVIRONMENT: development
+      PORT: 9000
+      BIND_HOST: 0.0.0.0
+
 volumes:
   db_data:

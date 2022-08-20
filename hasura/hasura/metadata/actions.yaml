@@ -1,6 +1,11 @@
-actions: []
+actions:
+  - name: callAction
+    definition:
+      kind: synchronous
+      handler: http://actions:9000
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+    - name: Output
   scalars: []

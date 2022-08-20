@@ -1,0 +1,10 @@
+type Mutation {
+  callAction(
+    text: String!
+  ): Output
+}
+
+type Output {
+  message: String!
+}
+
