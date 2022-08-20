@@ -1,0 +1,30 @@
+
+version: '3.6'
+
+services:
+  # RDB
+  postgres:
+    image: postgres:12
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+
+  # HASURA
+  graphql-engine:
+    container_name: hasura
+    build:
+      context: ./hasura
+      dockerfile: ./Dockerfile
+      args:
+        - DATABASE_URL=postgres://postgres:postgrespassword@postgres:5432/postgres
+        - LOG_TYPES=startup, http-log, webhook-log, websocket-log, query-log
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    restart: always
+
+volumes:
+  db_data:
