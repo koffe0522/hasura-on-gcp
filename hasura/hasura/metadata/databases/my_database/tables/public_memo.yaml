@@ -1,3 +1,30 @@
 table:
   name: memo
   schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - text
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - text
+      filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - text
+      filter: {}
+      check: {}
+      set:
+        text: ""
+delete_permissions:
+  - role: user
+    permission:
+      backend_only: false
+      filter: {}
